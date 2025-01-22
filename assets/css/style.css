@@ -429,6 +429,15 @@ input[type="submit"]:focus {
     display: flex;
     align-items: center;
 }
+.service-banner{
+    height: 520px;
+    margin-top: 200px;
+    background: url(../images/services/service-banner-1.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+}
 
 .page-banner.overlay:after {
     position: absolute;
@@ -535,18 +544,33 @@ input[type="submit"]:focus {
 /****************************************************** */
 
 /*30 sept 2021*/
+.logo-img{
+   width: 100px;
+   height: 32px;
+}
 
 .map_frame {
     width: 1200px;
     height: 460px;
 }
 
+
 @media only screen and (max-width:800px) {
     .map_frame {
         width: 680px;
     }
 }
-
+@media only screen and (max-width:991px) {
+    .service-banner{
+        height: 520px;
+        margin-top: 100px;
+        background: url(../images/services/service-banner-1.jpg);
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+    }
+}
 @media only screen and (max-width:420px) {
     .map_frame {
         width: 345px;
@@ -772,9 +796,15 @@ input[type="submit"]:focus {
     margin-left: auto;
 }
 
-.partners-section .slick-track {
+.partners-section  {
     display: flex;
     align-items: center;
+}
+.slick-track{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
 }
 
 .partner-wrap .partner-prev,
@@ -2268,3 +2298,109 @@ input[type="submit"]:focus {
     border-radius: 15px;
     background: var(--primary-color, #fe6600);
 }
+
+
+/* Slick Slide Spacing */
+.slick-slide {
+    margin: 0 10px; /* Adds consistent spacing between slides */
+    display: flex; /* Ensures proper alignment of cards */
+    justify-content: center; /* Centers the card within each slide */
+    align-items: stretch; /* Ensures cards stretch to the same height */
+  }
+  
+  /* Card Styling */
+  .card {
+    height: 100%; /* Makes cards stretch to match the tallest card */
+    width: 100%; /* Ensure card takes full width of its container */
+    max-width: 300px; /* Optional: Set a max width for consistency */
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column; /* Ensures content stacks vertically */
+    justify-content: space-between; /* Adds equal spacing between items */
+    margin: auto; /* Centers the card in its container */
+  }
+  
+  /* Card Image Styling */
+  .card img {
+    width: 100%; /* Ensures image fits within the card */
+    height: 150px; /* Consistent height for images */
+    object-fit: cover; /* Crops the image without distortion */
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  
+  /* Card Title Styling */
+  .card h5 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #222; /* Dark text for readability */
+    min-height: 40px; /* Ensure consistent height for titles */
+    line-height: 1.2; /* Adjust spacing between title lines */
+  }
+  
+  /* Card Text Styling */
+  .card p {
+    font-size: 14px;
+    color: #555;
+    margin: 0;
+    flex-grow: 1; /* Makes the text container grow to match other cards */
+    display: flex;
+    align-items: center; /* Vertically centers text inside the container */
+    justify-content: center;
+  }
+  
+  /* Service Carousel */
+  .services-carousel {
+    display: flex;
+    align-items: stretch; /* Ensures all cards stretch to equal height */
+  }
+  
+  /* Slick Carousel Adjustments */
+  .slick-prev, .slick-next {
+    font-size: 0; /* Prevents text content */
+    background: rgba(128, 128, 128, 0.8); /* Gray background */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: background 0.3s ease;
+  }
+  
+  /* FontAwesome Icon Styling */
+  .slick-prev:before, .slick-next:before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 16px;
+    color: white; /* Icon color */
+    line-height: 1;
+  }
+  
+  /* Left Arrow Icon */
+  .slick-prev:before {
+    content: "\f104";
+  }
+  
+  /* Right Arrow Icon */
+  .slick-next:before {
+    content: "\f105";
+  }
+  
+  /* Hover Effect */
+  .slick-prev:hover, .slick-next:hover {
+    background: rgba(169, 169, 169, 1); /* Darker gray on hover */
+  }
+  
+  /* Style for the span in the heading */
+.our-services-heading span {
+    color: #fe6600;
+  }
+  
