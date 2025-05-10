@@ -355,7 +355,7 @@ input[type="submit"]:focus {
 /****************************************************** */
 .hero-section {
     height: 1000px;
-    margin-top: 50px;
+    /* margin-top: 10px; */
     background: url(../images/hero/hero-bg.jpg);
     background-size: cover;
     background-position: center;
@@ -404,7 +404,7 @@ input[type="submit"]:focus {
 /****************************************************** */
 .page-banner {
     height: 520px;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     background: url(../images/banner/banner-bg.jpg);
     background-size: cover;
     background-position: center;
