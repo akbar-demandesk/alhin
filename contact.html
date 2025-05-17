@@ -26,6 +26,9 @@
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="assets/css/responsive.css">
 
+    <!-- New Changes -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
     <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
 </head>
 
@@ -295,18 +298,18 @@
                             <h2>Get In <span>Touch.</span></h2>
                         </div>
                         <p>Don’t Hesitate to contact with us for any kind of information.</p>
-                        <form id="call-back-form" class="call-back-form" name="call-back-form" method="post">
+                        <form id="contact-form" class="call-back-form" name="call-back-form" method="post">
                             <div class="row clearfix">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" name="full-name" id="full-name" class="form-control" value=""
+                                        <input type="text" name="Name" id="full-name" class="form-control" value=""
                                             placeholder="Full Name Here" required="">
                                         <label class='input-validation-error_text' id="name_err"></label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="email" name="email-address" id="email-address" class="form-control"
+                                        <input type="email" name="Email" id="email-address" class="form-control"
                                             value="" placeholder="Email Here" required="">
                                         <label class='input-validation-error_text' id="email_err"></label>
 
@@ -314,24 +317,27 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" name="phone-number" id="phone-number" class="form-control"
-                                            value="" placeholder="Phone No.">
+                                        <input type="tel" name="Mobile" id="phone-number" class="form-control" value=""
+                                            placeholder="Phone No." pattern="^\d{10}$">
                                         <label class='input-validation-error_text' id="mobile_err"></label>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-40">
                                     <div class="form-group">
-                                        <textarea name="form-message" id="form-message" rows="7" class="form-control"
+                                        <textarea name="Message" id="form-message" rows="7" class="form-control"
                                             placeholder="Text here..."></textarea>
                                         <label class='input-validation-error_text' id="message_err"></label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group mb-0 text-center">
-                                <button class="theme-btn" type="submit" onclick="submitform1()">Submit Now <i
+                                <button class="theme-btn" type="submit">Submit Now <i
                                         class="fas fa-arrow-right"></i></button>
                             </div>
                         </form>
+                        <div id="alert-success" class="alert alert-success mt-3 d-none">Thank you! We’ll be in touch
+                            shortly.</div>
+                        <div id="alert-error" class="alert alert-danger  mt-3 d-none">Oops! Something went wrong.</div>
                     </div>
                 </div>
             </div>
@@ -499,7 +505,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- Contact Form  -->
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
 
         function ValidateEmail(inputText) {
 
@@ -616,7 +622,35 @@
 
         }
 
+    </script> -->
+
+    <script>
+        $('#contact-form').on('submit', function (e) {
+            e.preventDefault(); // prevent default submit
+            const $form = $(this);
+            $('#alert-success, #alert-error').addClass('d-none');
+
+            $.ajax({
+                url: './phpmailer/sendMail.php',
+                method: 'POST',
+                data: $form.serialize(),
+                dataType: 'json'
+            })
+                .done(res => {
+                    if (res.success) {
+                        $form.trigger('reset');
+                        $('#alert-success').removeClass('d-none').text(res.message || 'Success!');
+                    } else {
+                        $('#alert-error').removeClass('d-none').text(res.message || 'Failed to send');
+                    }
+                })
+                .fail(err => {
+                    console.error(err);
+                    $('#alert-error').removeClass('d-none').text('AJAX request failed.');
+                });
+        });
     </script>
+
 
 </body>
 
