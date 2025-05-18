@@ -147,7 +147,7 @@
       <!--==================================================================== 
             Start Page Banner Section
         =====================================================================-->
-      <section class="page-banner overlay">
+      <section class="contact-banner overlay">
         <div class="container">
           <div class="banner-inner">
             <h2 class="wow fadeInUp" data-wow-duration="1.5s">Contact Us.</h2>
@@ -637,84 +637,83 @@
         }
       }
 
-      function submitform1() {
-        var name = document.getElementById("full-name").value;
-        var email = document.getElementById("email-address").value;
-        var mobile = document.getElementById("phone-number").value;
-        var message = document.getElementById("form-message").value;
+      function submitForm() {
+        var name = $("#full-name").val();
+        var email = $("#email-address").val();
+        var mobile = $("#phone-number").val();
+        var message = $("#form-message").val();
 
+        // Basic validation
         if (name == "") {
-          $("#name").focus();
-          $("#name").addClass("input-validation-error");
-          $("#name").html("Please Enter Name.");
-
+          $("#name_err").text("Please enter your name.");
           return false;
         } else {
-          $("#name").removeClass("input-validation-error");
-          $("#name_err").html("");
+          $("#name_err").text("");
         }
 
         if (email == "") {
-          $("#email").focus();
-          $("#email").addClass("input-validation-error");
-          $("#email_err").html("Please Enter Email");
+          $("#email_err").text("Please enter your email.");
+          return false;
+        } else if (!validateEmail(email)) {
+          $("#email_err").text("Please enter a valid email.");
           return false;
         } else {
-          if (!ValidateEmail(email)) {
-            $("#email").focus();
-            $("#email").addClass("input-validation-error");
-            $("#email_err").html("Please Enter Valid Email");
-            return false;
-          } else {
-            $("#email").removeClass("input-validation-error");
-            $("#email_err").html("");
-          }
+          $("#email_err").text("");
         }
 
-        if (mobile == "") {
-          $("#mobile").focus();
-          $("#mobile").addClass("input-validation-error");
-          $("#mobile_err").html("Please Enter Mobile");
+        if (mobile == "" || mobile.length !== 10 || !/^\d{10}$/.test(mobile)) {
+          $("#mobile_err").text("Please enter a valid 10-digit phone number.");
           return false;
         } else {
-          if (!phonenumber(mobile)) {
-            $("#mobile").focus();
-            $("#mobile").addClass("input-validation-error");
-            $("#mobile_err").html("Invalid Mobile Number Must Be 10 Digits");
-            return false;
-          } else {
-            $("#mobile").removeClass("input-validation-error");
-            $("#mobile_err").html("");
-          }
+          $("#mobile_err").text("");
         }
 
         if (message == "") {
-          $("#message").focus();
-          $("#message").addClass("input-validation-error");
-          $("#message_err").html("Please Enter Full Name.");
-
+          $("#message_err").text("Please enter your message.");
           return false;
         } else {
-          $("#message").removeClass("input-validation-error");
-          $("#message_err").html("");
+          $("#message_err").text("");
         }
 
-        var formData = new FormData();
+        // Disable button to prevent multiple submissions
+        $("button[type='submit']").prop("disabled", true).text("Sending...");
 
         $.ajax({
-          type: "post",
-          url: "http://clearwatercraft.com/ALHIN_GLOBAL/mail.php",
-          async: false,
-          data: { Name: name, Email: email, Mobile: mobile, Message: message },
-          success: function (res) {
-            console.log(res);
-            swal("Success", "Message sent!", "success");
+          type: "POST",
+          url: "./phpmailer/sendmail.php", // Adjust path if needed
+          data: {
+            name: name,
+            email: email,
+            mobile: mobile,
+            message: message,
+          },
+          success: function (response) {
+            console.log(response);
+            if (response.trim().toLowerCase().includes("success")) {
+              swal("Success", "Your message has been sent!", "success");
+              $("#contact-form")[0].reset();
+            } else {
+              swal("Error", "Server responded: " + response, "error");
+            }
           },
           error: function (err) {
-            console.log(err);
-            swal("Oops...", "Something went wrong :(", "error");
+            console.error(err);
+            swal(
+              "Error",
+              "Something went wrong while sending your message.",
+              "error"
+            );
+          },
+          complete: function () {
+            // Re-enable button
+            $("button[type='submit']").prop("disabled", false).text("Send");
           },
         });
+      }
+
+      function validateEmail(email) {
+        var re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        return re.test(email);
       }
     </script>
   </body>

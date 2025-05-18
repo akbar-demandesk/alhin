@@ -301,7 +301,7 @@
 })(window.jQuery);
 $(document).ready(function () {
   $(".services-carousel").slick({
-    slidesToShow: 4,
+    slidesToShow: 4.5,
     slidesToScroll: 1,
     arrows: true, // Enable next/prev buttons
     dots: false, // Disable dots
