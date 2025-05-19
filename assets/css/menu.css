@@ -1,4 +1,5 @@
 /****************************************************** */
+<<<<<<< HEAD
 
 /******************  Main Header style **************** */
 
@@ -6,6 +7,12 @@
 
 .main-header {
     position: fixed;
+=======
+/******************  Main Header style **************** */
+/****************************************************** */
+.main-header {
+    position: sticky;
+>>>>>>> 69595c5fdd279762acd16fdd855e47c9a5ba58b6
     left: 0px;
     top: 0px;
     z-index: 999;
@@ -14,6 +21,10 @@
     transition: all 500ms ease;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 69595c5fdd279762acd16fdd855e47c9a5ba58b6
 .fixed-header {
     top: -47px;
     box-shadow: 0px 0px 30px 0px rgba(87, 95, 245, .10);
@@ -35,7 +46,10 @@
 }
 
 /*Header to */
+<<<<<<< HEAD
 
+=======
+>>>>>>> 69595c5fdd279762acd16fdd855e47c9a5ba58b6
 .top-inner {
     display: flex;
     align-items: center;
@@ -55,6 +69,10 @@
     background: var(--heading-color, #2d2d2d);
     z-index: -1;
     clip-path: polygon(calc(100% - 10px) 0, calc(100% - 60px) 100%, 60px 100%, 10px 0);
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 69595c5fdd279762acd16fdd855e47c9a5ba58b6
 }
 
 .top-inner:after {
@@ -135,12 +153,21 @@
     transition: all 500ms ease;
 }
 
+<<<<<<< HEAD
 .main-menu .navigation li:hover>a,
 .main-menu .navigation li.current-menu-item>a {
     color: var(--primary-color, #fe6600);
 }
 
 .main-menu .navigation>li:before {
+=======
+.main-menu .navigation li:hover > a,
+.main-menu .navigation li.current-menu-item > a {
+    color: var(--primary-color, #fe6600);
+}
+
+.main-menu .navigation > li:before {
+>>>>>>> 69595c5fdd279762acd16fdd855e47c9a5ba58b6
     content: '';
     position: absolute;
     bottom: -20px;
@@ -172,7 +199,11 @@
     display: none;
     background: #ffffff;
     border-radius: 0 0 5px 5px;
+<<<<<<< HEAD
     box-shadow: inset 0 0 0 10px #fff, 0 5px 15px -5px rgba(0, 0, 0, .2);
+=======
+    box-shadow: inset 0 0 0 10px #fff, 0 5px 15px -5px rgba(0,0,0,.2);
+>>>>>>> 69595c5fdd279762acd16fdd855e47c9a5ba58b6
 }
 
 .main-menu .navigation li ul li {
@@ -247,14 +278,25 @@
     .main-menu .navigation li {
         padding: 20px 15px;
     }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 69595c5fdd279762acd16fdd855e47c9a5ba58b6
 }
 
 @media only screen and (max-width: 1199px) {
     .main-menu .navigation li {
         padding: 20px 12px;
     }
+<<<<<<< HEAD
 }
 
+=======
+    
+}
+
+
+>>>>>>> 69595c5fdd279762acd16fdd855e47c9a5ba58b6
 /* Mobile Menu */
 
 @media only screen and (max-width: 991px) {
@@ -332,4 +374,9 @@
     .main-menu .navigation li ul li ul {
         left: auto;
     }
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> 69595c5fdd279762acd16fdd855e47c9a5ba58b6
